@@ -11,9 +11,9 @@ def print_news(stdscr, selected_row_idx):
     titles = soup.find_all('span', class_='teaser__headline')
 
     curses.curs_set(0)
-    for i, title in enumerate(titles):
-        print_center(stdscr, title.text, i)
+    print_center_list(stdscr, titles)
 
+    stdscr.refresh()
     stdscr.getch()
 
 def print_menu(stdscr, selected_row_idx):
@@ -30,12 +30,21 @@ def print_menu(stdscr, selected_row_idx):
             stdscr.addstr(y, x, row)
     stdscr.refresh()
 
-def print_center(stdscr, text, y_offset=0):
+def print_center(stdscr, text):
     stdscr.clear()
     h, w = stdscr.getmaxyx()
     x = w//2 - len(text)//2
     y = h//2
     stdscr.addstr(y, x, text)
+    stdscr.refresh()
+
+def print_center_list(stdscr, content):
+    stdscr.clear()
+    h, w = stdscr.getmaxyx()
+    for i, row in enumerate(content):
+        x = w//2 - len(row)//2
+        y = h//2 - len(content)//2 + i
+        stdscr.addstr(y, x, row.text)
     stdscr.refresh()
 
 def main(screen):
