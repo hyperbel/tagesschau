@@ -6,7 +6,6 @@ pkgs.mkShell {
     (python3.withPackages (ps: with ps; [ 
       requests 
       beautifulsoup4
-      flask
       pytest
     ]))
   ];
