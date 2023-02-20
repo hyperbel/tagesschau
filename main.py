@@ -19,15 +19,17 @@ def print_news(stdscr, selected_row_idx):
 def print_menu(stdscr, selected_row_idx):
     stdscr.clear()
     h, w = stdscr.getmaxyx()
-    for idx, row in enumerate(Kategorien):
-        x = w//2 - len(row)//2
+    # stdscr.addstr(h//2 - 3, w//2 - len('Themen')//2, 'Themen')
+    stdscr.addstr(0, 0, 'Themenauswahl')
+    for idx, kategorie in enumerate(Kategorien):
+        x = (w//2 - len(kategorie)//2)
         y = h//2 - len(Kategorien)//2 + idx
         if idx == selected_row_idx:
             stdscr.attron(curses.color_pair(1))
-            stdscr.addstr(y, x, row)
+            stdscr.addstr(y, x, kategorie)
             stdscr.attroff(curses.color_pair(1))
         else:
-            stdscr.addstr(y, x, row)
+            stdscr.addstr(y, x, kategorie)
     stdscr.refresh()
 
 def print_center(stdscr, text):
