@@ -7,6 +7,7 @@ pkgs.mkShell {
       requests 
       beautifulsoup4
       pytest
+      pylint
     ]))
   ];
 }
